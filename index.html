@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casey's Tile LLC | Michigan Artisanal Stone & Tile Installation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --stone: #fcfaf7;
+            --tile-blue: #1a4d8c; 
+            --tile-gold: #c2a366; 
+            --onyx: #121212;
+            --grid: #efedea;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--stone); 
+            color: var(--onyx);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .serif { 
+            font-family: 'Playfair Display', serif; 
+            letter-spacing: -0.02em;
+        }
+
+        /* High-Visibility Pattern Classes */
+        .tile-pattern-bg {
+            background-image: url('8488.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: var(--tile-blue); /* Fallback color */
+        }
+
+        .pattern-divider-thick {
+            height: 80px;
+            background-image: url('8488.jpg');
+            background-size: contain;
+            background-repeat: repeat-x;
+            background-color: var(--tile-blue);
+            border-top: 2px solid var(--tile-gold);
+            border-bottom: 2px solid var(--tile-gold);
+        }
+
+        .pattern-border {
+            border: 8px solid transparent;
+            border-image: url('8488.jpg') 30 round;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(26, 77, 140, 0.95) 0%, rgba(18, 18, 18, 0.4) 70%);
+            z-index: 5;
+        }
+
+        .text-bronze { color: var(--tile-gold); }
+        .bg-bronze { background-color: var(--tile-gold); }
+        
+        .reveal-on-scroll { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+        .hero-image-wrapper { position: absolute; inset: 0; z-index: 0; }
+        .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 1.5s ease-in-out; }
+        .hero-img-secondary { animation: heroCrossfade 12s infinite; }
+
+        @keyframes heroCrossfade {
+            0%, 45%, 100% { opacity: 0; }
+            50%, 95% { opacity: 1; }
+        }
+
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            inset: 0;
+            background-color: rgba(18, 18, 18, 0.98);
+            backdrop-filter: blur(12px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 85vh;
+            border: 4px solid var(--tile-gold);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        input, textarea, select {
+            background-color: #f9f9f9 !important;
+            border: 1px solid var(--grid) !important;
+            padding: 12px !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 px-6 py-6 transition-all duration-300" id="mainNav">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/95 backdrop-blur-md border border-stone-200 rounded-sm px-10 py-4 shadow-sm">
+            <div class="flex items-center gap-4">
+                <img src="logo.png" alt="" class="h-10 w-auto" onerror="this.style.display='none'">
+                <span class="text-xl font-bold tracking-[0.2em] uppercase">CASEY'S <span class="text-bronze font-light">TILE</span></span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8 text-[10px] font-bold uppercase tracking-[0.2em]">
+                <a href="#about" class="hover:text-bronze transition">Philosophy</a>
+                <a href="#services" class="hover:text-bronze transition">Services</a>
+                <a href="#gallery" class="hover:text-bronze transition">Portfolio</a>
+                <a href="tel:3133386080" class="text-bronze hover:text-onyx transition flex items-center gap-2">
+                    <i class="fas fa-phone-alt"></i> 313-338-6080
+                </a>
+                <!-- Updated button to have black font for visibility -->
+                <a href="#contact" class="bg-onyx text-black px-6 py-2 rounded-full hover:bg-tile-blue transition shadow-sm font-bold">Inquire</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center overflow-hidden bg-onyx">
+        <div class="hero-image-wrapper">
+            <img src="img/hero1.jpg" alt="" class="hero-img">
+            <img src="img/hero2.jpg" alt="" class="hero-img hero-img-secondary">
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full py-32">
+            <div class="max-w-2xl text-white">
+                <span class="text-bronze uppercase tracking-[0.4em] text-[10px] font-bold mb-6 block">Michigan's Leader in Tile Installation</span>
+                <h1 class="text-6xl md:text-8xl font-bold leading-[1.1] mb-8 italic">Craftsmanship <br><span class="not-italic text-white/90">& Precision.</span></h1>
+                <p class="text-lg text-white/70 font-light mb-12 max-w-md leading-relaxed">
+                    With 30 years of experience, we specialize in high-quality tile for residential and commercial Michigan spaces.
+                </p>
+                <div class="flex flex-wrap gap-8">
+                    <a href="tel:3133386080" class="px-10 py-5 bg-bronze text-white text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-white hover:text-onyx transition duration-500 shadow-xl">Call 313-338-6080</a>
+                    <a href="#gallery" class="px-10 py-5 border border-white/30 text-white text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-white hover:text-onyx transition duration-500">The Archive</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Thick Pattern Divider -->
+    <div class="pattern-divider-thick"></div>
+
+    <!-- Philosophy -->
+    <section id="about" class="py-32 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-24 items-center">
+            <div class="order-2 md:order-1">
+                <span class="text-bronze uppercase tracking-[0.4em] text-[10px] font-bold mb-6 block">Michigan Expertise</span>
+                <h2 class="text-5xl font-bold mb-10 leading-tight">Elevating spaces <br>since 1996.</h2>
+                <p class="text-slate-600 mb-8 leading-relaxed">
+                    Casey’s Tile LLC is a trusted Michigan leader in tile installation. We specialize in high-quality craftsmanship, from standard installations to fully customized designs.
+                </p>
+                <div class="grid grid-cols-2 gap-8 mt-12">
+                    <div class="p-6 bg-stone rounded-sm">
+                        <h4 class="font-bold text-sm uppercase tracking-widest mb-2">30 Years</h4>
+                        <p class="text-xs text-slate-400">Deep expertise in Michigan craftsmanship.</p>
+                    </div>
+                    <div class="p-6 bg-stone rounded-sm">
+                        <h4 class="font-bold text-sm uppercase tracking-widest mb-2">Dual Focus</h4>
+                        <p class="text-xs text-slate-400">Residential elegance and Commercial durability.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative order-1 md:order-2">
+                <img src="img/tile1.jpg" alt="" class="w-full h-[550px] object-cover rounded-sm grayscale hover:grayscale-0 transition duration-700 shadow-xl" onerror="this.src='https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1000'">
+                <!-- Improved Quote box using the tile pattern as background -->
+                <div class="absolute -bottom-8 -left-8 tile-pattern-bg p-1 text-white shadow-2xl z-10 hidden md:block">
+                   <div class="bg-grey/95 backdrop-blur-md p-10 border border-stone-200">
+                        <p class="serif italic text-4xl text-onyx leading-tight">"Tailored to <br>your vision."</p>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-32 bg-stone/30 border-y border-stone-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24">
+                <h2 class="text-5xl font-bold mb-4 italic">Service Offerings</h2>
+                <div class="w-16 h-1 bg-bronze mx-auto"></div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-center gap-16 md:gap-32 text-center md:text-left">
+                <div class="space-y-6 max-w-sm">
+                    <div class="w-12 h-12 bg-tile-blue text-white flex items-center justify-center rounded-full mb-4 mx-auto md:mx-0">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold italic">Residential</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed uppercase tracking-wider">Elevate your Michigan home with custom backsplashes, spa-like baths, and high-end flooring.</p>
+                </div>
+                <div class="space-y-6 max-w-sm">
+                    <div class="w-12 h-12 bg-tile-blue text-white flex items-center justify-center rounded-full mb-4 mx-auto md:mx-0">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold italic">Commercial</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed uppercase tracking-wider">Stylish, durable tiling solutions for Michigan businesses that require low maintenance and high impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pattern Strip -->
+    <div class="pattern-divider-thick"></div>
+
+    <!-- Portfolio -->
+    <section id="gallery" class="py-32 bg-onyx text-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                <div>
+                    <h2 class="text-5xl font-bold mb-4 italic">The Michigan Archive</h2>
+                    <p class="text-bronze tracking-[0.4em] text-[10px] font-bold uppercase">Click to view craftsmanship detail</p>
+                </div>
+                <a href="https://www.facebook.com/groups/1438540400917577" target="_blank" class="text-[10px] tracking-widest border border-white/20 px-6 py-3 hover:bg-white hover:text-onyx transition uppercase">Follow Recent Projects</a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                <script>
+                    for(let i=1; i<=20; i++) {
+                        document.write(`
+                            <div class="relative group cursor-zoom-in overflow-hidden aspect-[3/4] bg-neutral-900 shadow-lg border border-white/5">
+                                <img src="img/tile${i}.jpg" class="gallery-img w-full h-full object-cover transition duration-700 group-hover:scale-105 group-hover:opacity-60" alt="">
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inquiry -->
+    <section id="contact" class="py-32 bg-stone relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-white border-t-8 border-bronze shadow-2xl text-center overflow-hidden">
+                <!-- Contact Header -->
+                <div class="bg-tile-blue py-12 px-8 relative">
+                    <div class="relative z-10 text-black">
+                        <h2 class="text-5xl font-bold mb-4 italic">Let's Discuss Your Project</h2>
+                        <p class="text-bronze uppercase tracking-[0.4em] text-[10px] font-bold">Request an Estimate Today</p>
+                    </div>
+                </div>
+
+                <div class="p-8 md:p-20">
+                    <form id="contactForm" class="space-y-10 text-left">
+                        <div class="grid md:grid-cols-2 gap-10">
+                            <input type="text" id="custName" class="w-full outline-none" placeholder="Your Name" required>
+                            <input type="tel" id="custPhone" class="w-full outline-none" placeholder="Phone Number" required>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-10">
+                            <input type="email" id="custEmail" class="w-full outline-none" placeholder="Email Address" required>
+                            <input type="text" id="custCity" class="w-full outline-none" placeholder="Project City" required>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-10">
+                            <select id="projectType" class="w-full outline-none cursor-pointer">
+                                <option value="Residential">Residential Project</option>
+                                <option value="Commercial">Commercial Project</option>
+                            </select>
+                            <select id="callTime" class="w-full outline-none cursor-pointer">
+                                <option value="Morning">Call me in the Morning</option>
+                                <option value="Afternoon">Call me in the Afternoon</option>
+                                <option value="Evening">Call me in the Evening</option>
+                            </select>
+                        </div>
+                        <textarea rows="3" id="custMessage" class="w-full outline-none resize-none" placeholder="Tell us about your tiling vision..." required></textarea>
+                        
+                        <div class="flex flex-col md:flex-row gap-6 pt-4">
+                            <!-- Updated button to have black font for visibility -->
+                            <button type="submit" class="flex-1 py-6 bg-onyx text-black text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-tile-blue transition shadow-md">Submit Inquiry</button>
+                            <a href="tel:3133386080" class="flex-1 py-6 border border-onyx text-[10px] uppercase tracking-[0.4em] font-bold flex items-center justify-center hover:bg-stone transition text-onyx">Call 313-338-6080</a>
+                        </div>
+                    </form>
+                    <div id="formSuccess" class="hidden mt-12 text-bronze serif italic text-2xl">Opening your email client now...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer updated with Solid Branded Color -->
+    <footer class="relative py-24 text-white overflow-hidden bg-[#1a4d8c] border-t-2 border-tile-gold">
+        <div class="relative z-10 max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
+            <div>
+                <div class="text-[14px] font-bold tracking-[0.3em] uppercase mb-2 text-white">CASEY'S <span class="text-tile-gold font-light">TILE</span></div>
+                <p class="text-[9px] tracking-[0.2em] uppercase text-white/70 italic">Professional Michigan Installation</p>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                 <a href="tel:3133386080" class="text-2xl font-bold tracking-widest hover:text-tile-gold transition text-white">313-338-6080</a>
+                 <div class="w-12 h-px bg-tile-gold my-2"></div>
+                 <p class="text-[9px] tracking-[0.2em] uppercase text-white/80">30 Years of Excellence</p>
+            </div>
+            <div class="text-[9px] text-white/60 uppercase tracking-[0.3em] leading-loose">
+                &copy; 2026 CASEY'S TILE LLC<br>Serving All of Michigan
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <button id="closeLightbox" class="absolute top-10 right-10 text-white text-2xl hover:text-bronze transition"><i class="fas fa-times"></i></button>
+        <img id="lightboxImg" class="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const closeBtn = document.getElementById('closeLightbox');
+
+        document.querySelectorAll('.gallery-img').forEach(img => {
+            img.parentElement.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        };
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+        // Email Form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const email = document.getElementById('custEmail').value;
+            const city = document.getElementById('custCity').value;
+            const type = document.getElementById('projectType').value;
+            const time = document.getElementById('callTime').value;
+            const msg = document.getElementById('custMessage').value;
+            
+            const subject = encodeURIComponent(`Inquiry: ${type} Tiling - ${name}`);
+            const body = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nCity: ${city}\nBest Time: ${time}\n\nDetails: ${msg}`);
+            
+            window.location.href = `mailto:TEST@TEST.COM?subject=${subject}&body=${body}`;
+            document.getElementById('formSuccess').classList.remove('hidden');
+        });
+
+        // Nav Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 100) {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-6');
+            } else {
+                nav.classList.add('py-6');
+                nav.classList.remove('py-4');
+            }
+        });
+
+        // Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('section').forEach(s => { s.classList.add('reveal-on-scroll'); observer.observe(s); });
+    </script>
+</body>
+</html>
